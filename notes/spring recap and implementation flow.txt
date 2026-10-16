@@ -1,0 +1,122 @@
+                 YOU ARE HERE
+                      ↓
+        Spring + Spring Boot Module
+                      ↓
+             Spring fundamentals
+                      ↓
+               DI / IoC / Beans
+                      ↓
+               Spring Boot setup
+                      ↓
+              First Spring app
+                      ↓
+             GET /api/hello
+                      ↓
+              POST /api/hello
+                      ↓
+          Controller → Service
+                      ↓
+            User CRUD in memory
+                      ↓
+               PostgreSQL
+                      ↓
+             Spring JDBC
+                      ↓
+             User CRUD + DB
+                      ↓
+            Spring Security
+                      ↓
+            Authentication
+                      ↓
+                  JWT
+                      ↓
+             Authorization/RBAC
+                      ↓
+              OAuth 2.0 / OIDC
+
+
+
+
+
+
+
+
+IoC
+ ↓
+Spring controls object creation/lifecycle
+
+IoC Container
+ ↓
+The Spring mechanism that manages objects
+
+Bean
+ ↓
+An object managed by Spring
+
+DI
+ ↓
+Spring supplies one bean/dependency to another
+
+
+
+
+The main reason is separation of responsibilities.
+Controller
+"How does the outside world communicate with my application?"
+
+Deals with:
+HTTP
+URLs
+JSON
+status codes
+request parameters
+
+Service
+"What should my application do?"
+
+Deals with:
+business/application logic
+workflow
+rules
+coordination
+
+Repository
+"How do I store/retrieve data?"
+
+Deals with:
+database
+queries
+saving
+finding
+updating
+deleting
+
+So you can remember:
+Controller  → HTTP
+Service     → Business logic
+Repository  → Data access
+
+And in your current project:
+                 Spring
+                   │
+        ┌──────────┴──────────┐
+        ↓                     ↓
+ UserController          UserService
+        ↓                     ↓
+     HTTP                  UserRepository
+                              ↓
+                         List<User>
+
+The Controller should not know how users are stored, and the Repository should not know anything about HTTP. That's the main architectural benefit of separating these layers.
+
+curl.exe -i -X POST "http://localhost:8080/api/users" -H "Content-Type: application/json" -d '{\"name\":\"Charlie\",\"email\":\"charlie@example.com\"}'
+
+curl.exe -i "http://localhost:8080/api/users/1"
+
+Invoke-RestMethod -Uri "http://localhost:8080/api/users/2" -Method Put -ContentType "application/json" -Body '{"name":"Alice Updated","email":"alice.updated@example.com"}'
+
+Invoke-RestMethod `
+  -Uri "http://localhost:8080/api/users/2" `
+  -Method Put `
+  -ContentType "application/json" `
+  -Body '{"name":"Alice Updated","email":"alice.updated@example.com"}'
